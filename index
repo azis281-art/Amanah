@@ -3,354 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAI Keren - Kelas IX</title>
+    <title>RuangBelajar IX - Platform Belajar Siswa</title>
     <!-- Memuat Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Memuat ikon (Lucide) -->
-    <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.js"></script>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    
-    <style>
-        /* Menggunakan font Inter */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        /* Menyembunyikan halaman lain secara default */
-        .page-content {
-            display: none;
-        }
-        /* Menampilkan halaman yang aktif */
-        .page-content.active {
-            display: block;
-        }
-        /* Styling untuk tab */
-        .tab-button.active {
-            border-bottom-color: #10B981; /* green-500 */
-            color: #059669; /* green-600 */
-            font-weight: 600;
-        }
-    </style>
-    <!-- Memuat font Inter dari Google Fonts -->
+    <!-- Memuat Font Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Menggunakan font Inter sebagai default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Menyembunyikan semua konten halaman secara default */
+        .page-content {
+            display: none;
+        }
+        /* Menampilkan konten halaman yang aktif */
+        .page-content.active {
+            display: block;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-green-700">
-                PAI Keren <span class="text-green-500">IX</span>
+    <div class="flex flex-col md:flex-row h-screen">
+        
+        <!-- Sidebar (Navigasi) -->
+        <nav class="w-full md:w-64 bg-white md:shadow-lg flex-shrink-0">
+            <div class="p-6">
+                <a href="#" class="flex items-center space-x-2 nav-link" data-page="home">
+                    <span class="text-2xl font-bold text-indigo-600">RuangBelajar IX</span>
+                </a>
             </div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('home')">Home</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('bab1')">Bab 1</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('bab2')">Bab 2</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('tentang')">Tentang</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('admin')">Admin</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-green-600" onclick="showPage('bantuan')">Bantuan</a>
-            </div>
-            <button class="md:hidden text-gray-700" id="mobile-menu-button">
-                <!-- Ikon Menu (placeholder) -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+            
+            <ul class="flex flex-row md:flex-col p-4 md:space-y-2">
+                <li>
+                    <a href="#" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" data-page="home">
+                        <i class="fa-solid fa-house w-5 text-center"></i>
+                        <span class="font-medium">Beranda</span>
+                    </a>
+                </li>
+                <!-- Navigasi Mata Pelajaran (Contoh PAI) -->
+                <li>
+                    <a href="#" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" data-page="subject-pai">
+                        <i class="fa-solid fa-book-quran w-5 text-center"></i>
+                        <span class="font-medium">Pendidikan Agama Islam</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" data-page="about">
+                        <i class="fa-solid fa-circle-info w-5 text-center"></i>
+                        <span class="font-medium">Tentang</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" data-page="admin">
+                        <i class="fa-solid fa-user-shield w-5 text-center"></i>
+                        <span class="font-medium">Pengaturan Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" data-page="help">
+                        <i class="fa-solid fa-circle-question w-5 text-center"></i>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
-        <!-- Mobile Menu (Hidden) -->
-        <div class="md:hidden bg-white shadow-lg" id="mobile-menu" style="display: none;">
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('home')">Home</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('bab1')">Bab 1</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('bab2')">Bab 2</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('tentang')">Tentang</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('admin')">Admin</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-green-50" onclick="showPage('bantuan')">Bantuan</a>
-        </div>
-    </header>
 
-    <!-- Konten Utama -->
-    <main class="container mx-auto p-4 mt-8">
+        <!-- Konten Utama -->
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto">
 
-        <!-- Halaman Home -->
-        <div id="home" class="page-content active">
-            <!-- Hero Section -->
-            <section class="bg-gradient-to-r from-green-600 to-emerald-500 text-white p-8 rounded-lg shadow-lg mb-8">
-                <h1 class="text-4xl font-bold mb-2">Selamat Datang, Pejuang Akhirat!</h1>
-                <p class="text-lg text-green-100">Belajar Pendidikan Agama Islam jadi Asyik & Bermakna bersama Pak Azis.</p>
-            </section>
+            <!-- Halaman 1: Beranda (Daftar Mata Pelajaran) -->
+            <div id="home-content" class="page-content active">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Selamat Datang, Siswa!</h1>
+                <p class="text-gray-600 mb-8">Pilih mata pelajaran yang ingin kamu pelajari hari ini.</p>
 
-            <!-- Daftar Bab -->
-            <section>
-                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Daftar Materi PAI Kelas IX</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Kartu Bab 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="showPage('bab1')">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mb-4">
-                            <!-- Ikon (placeholder: Book) -->
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.747 0-3.332.477-4.5 1.253"></path></svg>
+                    <!-- Kartu Mata Pelajaran: PAI -->
+                    <div class="subject-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer" data-page="subject-pai">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 text-3xl mb-4">
+                            <i class="fa-solid fa-book-quran"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Bab 1: Iman Kepada Hari Akhir</h3>
-                        <p class="text-gray-600 mb-4">Meyakini adanya hari pembalasan dan dampaknya bagi kehidupan.</p>
-                        <a href="#" class="font-medium text-green-600 hover:text-green-500">Mulai Belajar &rarr;</a>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">Pendidikan Agama Islam</h2>
+                        <p class="text-gray-500 text-sm">Mempelajari aqidah, fiqih, dan sejarah Islam.</p>
                     </div>
 
-                    <!-- Kartu Bab 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="showPage('bab2')">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 text-orange-600 mb-4">
-                            <!-- Ikon (placeholder: Users) -->
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Kartu Mata Pelajaran: Matematika -->
+                    <div class="subject-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer" data-page="subject-math">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 text-3xl mb-4">
+                            <i class="fa-solid fa-calculator"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Bab 2: Jujur dan Adil</h3>
-                        <p class="text-gray-600 mb-4">Meneladani sifat para Nabi dalam bersikap jujur dan adil.</p>
-                        <a href="#" class="font-medium text-green-600 hover:text-green-500">Mulai Belajar &rarr;</a>
-                    </div>
-                    
-                    <!-- Kartu Bab (Placeholder) -->
-                    <div class="bg-white p-6 rounded-lg shadow-md opacity-50">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gray-100 text-gray-400 mb-4">
-                            <!-- Ikon (placeholder: Clock) -->
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Bab 3: Coming Soon</h3>
-                        <p class="text-gray-500 mb-4">Materi selanjutnya sedang disiapkan oleh Pak Azis.</p>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">Matematika</h2>
+                        <p class="text-gray-500 text-sm">Mempelajari aljabar, geometri, dan statistika.</p>
                     </div>
 
-                </div>
-            </section>
-        </div>
-
-        <!-- Halaman Bab 1: Hari Akhir -->
-        <div id="bab1" class="page-content">
-            <a href="#" class="text-green-600 hover:text-green-800 mb-4 inline-block" onclick="showPage('home')">&larr; Kembali ke Home</a>
-            <h1 class="text-3xl font-bold mb-2">Bab 1: Mengimani Hari Akhir, Mengakhiri Keburukan</h1>
-            <p class="text-gray-600 mb-6">Materi ini akan membahas makna, dalil, tanda-tanda, dan hikmah beriman kepada Hari Akhir.</p>
-
-            <!-- Peta Konsep -->
-            <div class="bg-white p-4 rounded-lg shadow-md mb-6">
-                <h3 class="text-xl font-semibold mb-2">Peta Konsep</h3>
-                <!-- Placeholder untuk gambar Peta Konsep -->
-                <div class="flex items-center justify-center bg-gray-100 rounded-lg text-gray-500">
-                    <img src="https://placehold.co/800x300/e2e8f0/64748b?text=Peta+Konsep%0AIman+Kepada+Hari+Akhir" alt="Peta Konsep" class="rounded-lg w-full h-auto">
+                    <!-- Kartu Mata Pelajaran: Bahasa Indonesia -->
+                    <div class="subject-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer" data-page="subject-indo">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-600 text-3xl mb-4">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">Bahasa Indonesia</h2>
+                        <p class="text-gray-500 text-sm">Mempelajari teks, sastra, dan kebahasaan.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Konten Materi (Tabs) -->
-            <div>
-                <!-- Navigasi Tab -->
-                <div class="border-b border-gray-300 mb-4">
-                    <nav class="flex space-x-4">
-                        <button class="tab-button py-2 px-4 text-gray-600 border-b-2 border-transparent hover:border-green-500 hover:text-green-600 active" onclick="showTab('bab1_teks')">
-                            Materi Teks
-                        </button>
-                        <button class="tab-button py-2 px-4 text-gray-600 border-b-2 border-transparent hover:border-green-500 hover:text-green-600" onclick="showTab('bab1_video')">
-                            Video Penjelasan
-                        </button>
-                        <button class="tab-button py-2 px-4 text-gray-600 border-b-2 border-transparent hover:border-green-500 hover:text-green-600" onclick="showTab('bab1_audio')">
-                            Podcast (Audio)
-                        </button>
-                        <button class="tab-button py-2 px-4 text-gray-600 border-b-2 border-transparent hover:border-green-500 hover:text-green-600" onclick="showTab('bab1_kuis')">
-                            Kuis Pemahaman
-                        </button>
-                    </nav>
-                </div>
-
-                <!-- Konten Tab -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <!-- Tab 1: Teks -->
-                    <div id="bab1_teks" class="tab-content active">
-                        <h3 class="text-2xl font-semibold mb-4">Ringkasan Materi: Iman Kepada Hari Akhir</h3>
-                        <p class="mb-4">Iman kepada Hari Akhir adalah rukun iman ke-5. Secara istilah, Hari Akhir (Yaumul Qiyamah) adalah hari berakhirnya seluruh kehidupan di alam semesta secara total, diikuti dengan babak baru yaitu kehidupan akhirat yang abadi.</p>
-                        <p class="mb-4">Dalil naqli tentang Hari Akhir sangat banyak, salah satunya adalah Q.S. al-Qari'ah [101]: 1-11.</p>
-                        <h4 class="text-lg font-semibold mt-4 mb-2">Tanda-tanda Hari Akhir</h4>
-                        <ul class="list-disc list-inside space-y-1 mb-4">
-                            <li>**Kiamat Sugra (Kecil):** Kerusakan alam (pencemaran sungai, banjir, longsor), ilmu agama dicabut, banyak fitnah, dsb.</li>
-                            <li>**Kiamat Kubra (Besar):** Matahari terbit dari barat, munculnya Dajjal, turunnya Nabi Isa a.s., ditiupnya sangkakala.</li>
-                        </ul>
-                        <h4 class="text-lg font-semibold mt-4 mb-2">Hikmah Beriman kepada Hari Akhir</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Mendorong untuk selalu berbuat baik dan jujur (karena semua akan di-hisab).</li>
-                            <li>Menghindari perbuatan maksiat dan merusak (takut akan azab).</li>
-                            <li>Membuat hidup lebih optimis dan tidak mudah putus asa.</li>
-                            <li>Bertanggung jawab terhadap alam (karena alam adalah titipan yang akan dipertanggungjawabkan).</li>
-                        </ul>
-                    </div>
-
-                    <!-- Tab 2: Video -->
-                    <div id="bab1_video" class="tab-content" style="display: none;">
-                        <h3 class="text-2xl font-semibold mb-4">Video Penjelasan</h3>
-                        <p class="mb-4">Simak video animasi tentang dahsyatnya Hari Kiamat dan hikmahnya berikut ini.</p>
-                        <!-- Placeholder Embed Video -->
-                        <div class="aspect-video w-full bg-gray-200 rounded-lg overflow-hidden">
-                            <img src="https://placehold.co/1280x720/e2e8f0/64748b?text=Placeholder+Video%0A(16:9)" alt="Video Placeholder" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Catatan: Bapak bisa mengganti `&lt;img&gt;` ini dengan `&lt;iframe&gt;` dari YouTube untuk menyematkan video.</p>
-                    </div>
-
-                    <!-- Tab 3: Audio -->
-                    <div id="bab1_audio" class="tab-content" style="display: none;">
-                        <h3 class="text-2xl font-semibold mb-4">Podcast "Ngaji Santai"</h3>
-                        <p class="mb-4">Dengarkan penjelasan Pak Azis tentang bagaimana nelayan dan petani bisa beriman pada Hari Akhir dalam pekerjaan sehari-hari.</p>
-                        <!-- Placeholder Audio Player -->
-                        <div class="bg-gray-100 p-4 rounded-lg flex items-center space-x-4">
-                            <button class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700">
-                                <!-- Ikon Play -->
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </button>
-                            <div>
-                                <h4 class="font-semibold">Episode 1: Nelayan & Hari Akhir</h4>
-                                <p class="text-sm text-gray-600">0:00 / 15:00</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab 4: Kuis -->
-                    <div id="bab1_kuis" class="tab-content" style="display: none;">
-                        <h3 class="text-2xl font-semibold mb-4">Kuis Pemahaman Bab 1</h3>
-                        <p class="mb-4">Uji pemahamanmu tentang materi Hari Akhir. Siap?</p>
-                        <button class="bg-green-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition-colors">
-                            Mulai Kuis (via Quizziz/Kahoot)
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Halaman Bab 2: Jujur dan Adil -->
-        <div id="bab2" class="page-content">
-            <a href="#" class="text-green-600 hover:text-green-800 mb-4 inline-block" onclick="showPage('home')">&larr; Kembali ke Home</a>
-            <h1 class="text-3xl font-bold mb-2">Bab 2: Jujur dan Adil</h1>
-            <p class="text-gray-600 mb-6">Materi ini sedang disiapkan. Sabar ya!</p>
-            <div class="bg-white p-12 rounded-lg shadow-md flex flex-col items-center justify-center h-64">
-                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 text-orange-600 mb-4">
-                    <!-- Ikon (placeholder: Users) -->
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-700">Materi Bab 2 (Jujur dan Adil)</h3>
-                <p class="text-gray-500">Segera Hadir!</p>
-            </div>
-        </div>
-
-        <!-- Halaman Tentang -->
-        <div id="tentang" class="page-content">
-            <h1 class="text-3xl font-bold mb-4">Tentang Guru Kita</h1>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-semibold mb-2">Azis, S. HI., S. Pd. I.</h2>
-                <p class="text-gray-600">Guru Mata Pelajaran Pendidikan Agama Islam dan Budi Pekerti.</p>
-                <p class="mt-4">Selamat belajar! Website ini didedikasikan untuk murid-murid hebat di Kelas IX. Mari kita jadikan belajar PAI sebagai pengalaman yang menyenangkan, bermakna, dan mendekatkan kita kepada Allah dan alam ciptaan-Nya.</p>
-            </div>
-        </div>
-
-        <!-- Halaman Admin -->
-        <div id="admin" class="page-content">
-            <h1 class="text-3xl font-bold mb-4">Halaman Admin</h1>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-semibold mb-2 text-red-600">Akses Terbatas</h2>
-                <p class="text-gray-600">Ini adalah halaman simulasi untuk admin (Pak Azis) mengelola konten.</p>
-                <div class="mt-6 space-y-4">
-                    <button class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600">Tambah Bab Baru</button>
-                    <button class="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600">Edit Materi Bab 1</button>
-                    <button class="w-full bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-600">Lihat Analitik Siswa</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Halaman Bantuan -->
-        <div id="bantuan" class="page-content">
-            <h1 class="text-3xl font-bold mb-4">Pusat Bantuan</h1>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-2xl font-semibold mb-4">Pertanyaan Sering Ditanyakan (FAQ)</h2>
+            <!-- Halaman 2: Detail Mata Pelajaran (Contoh PAI) -->
+            <div id="subject-pai-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-8">Pendidikan Agama Islam</h1>
+                <p class="text-gray-600 mb-6">Silakan pilih bab untuk mulai belajar.</p>
                 
-                <div class="mb-4">
-                    <h3 class="font-semibold text-lg">Bagaimana cara berpindah halaman?</h3>
-                    <p class="text-gray-600">Klik menu di bagian atas (navbar) untuk berpindah ke halaman Home, Bab, Tentang, atau Bantuan.</p>
-                </div>
-                <div class="mb-4">
-                    <h3 class="font-semibold text-lg">Bagaimana cara melihat materi video atau audio?</h3>
-                    <p class="text-gray-600">Pada halaman Bab, klik tab "Video Penjelasan" atau "Podcast (Audio)" untuk menampilkan konten media.</p>
-                </div>
-                <div class="mb-4">
-                    <h3 class="font-semibold text-lg">Saya menemukan error, harus lapor ke mana?</h3>
-                    <p class="text-gray-600">Silakan sampaikan langsung kepada Pak Azis di kelas atau melalui WA Grup.</p>
+                <div class="space-y-4">
+                    <!-- Kartu Bab 1 -->
+                    <div class="chapter-card bg-white p-5 rounded-lg shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-50" data-page="chapter-1-pai">
+                        <div>
+                            <span class="text-sm font-semibold text-indigo-600">Bab 1</span>
+                            <h2 class="text-lg font-semibold text-gray-800">Iman Kepada Hari Akhir</h2>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <!-- Kartu Bab 2 -->
+                    <div class="chapter-card bg-white p-5 rounded-lg shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-50" data-page="chapter-2-pai">
+                        <div>
+                            <span class="text-sm font-semibold text-indigo-600">Bab 2</span>
+                            <h2 class="text-lg font-semibold text-gray-800">Zakat, Infaq, dan Shadaqah</h2>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <!-- Kartu Bab 3 -->
+                    <div class="chapter-card bg-white p-5 rounded-lg shadow-sm flex justify-between items-center cursor-pointer hover:bg-gray-50" data-page="chapter-3-pai">
+                        <div>
+                            <span class="text-sm font-semibold text-indigo-600">Bab 3</span>
+                            <h2 class="text-lg font-semibold text-gray-800">Haji dan Umrah</h2>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-400"></i>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </main>
+            <!-- Halaman 3: Detail Bab (Contoh Bab 1 PAI) -->
+            <div id="chapter-1-pai-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Bab 1: Iman Kepada Hari Akhir</h1>
+                <p class="text-gray-600 mb-8">Materi pembelajaran untuk bab ini.</p>
 
-    <!-- Footer -->
-    <footer class="bg-white mt-12 py-6 border-t border-gray-200">
-        <div class="container mx-auto px-4 text-center text-gray-500">
-            <p>&copy; 2025 PAI Keren Kelas IX - Didesain untuk Pak Azis & Murid Hebat.</p>
-        </div>
-    </footer>
+                <div class="space-y-5">
+                    <!-- Materi 1: Video -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Video</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Pengertian Hari Akhir</h3>
+                        </div>
+                        <!-- Placeholder Video -->
+                        <div class="aspect-video bg-black rounded-lg flex items-center justify-center">
+                            <span class="text-white">Placeholder Video Pembelajaran (16:9)</span>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">Tonton video ini untuk memahami konsep dasar hari akhir menurut ajaran Islam.</p>
+                    </div>
+
+                    <!-- Materi 2: Teks (Ringkasan) -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Teks</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Tanda-tanda Hari Kiamat</h3>
+                        </div>
+                        <div class="prose prose-sm max-w-none text-gray-700">
+                            <p>Hari kiamat memiliki tanda-tanda, baik tanda-tanda kecil (sughra) maupun tanda-tanda besar (kubra). Berikut adalah beberapa di antaranya:</p>
+                            <ul>
+                                <li><strong>Tanda Kecil:</strong> Diutusnya Nabi Muhammad SAW, ilmu agama dicabut, maraknya perzinaan, dan berlomba-lomba meninggikan bangunan.</li>
+                                <li><strong>Tanda Besar:</strong> Munculnya Dajjal, turunnya Nabi Isa AS, keluarnya Ya'juj dan Ma'juj, dan terbitnya matahari dari barat.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Materi 3: Kuis -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Kuis</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Uji Pemahaman</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Seberapa jauh pemahamanmu tentang materi ini? Yuk, coba kuis singkat!</p>
+                        <button class="bg-indigo-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Mulai Kuis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Halaman Detail Bab 2 PAI -->
+            <div id="chapter-2-pai-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Bab 2: Zakat, Infaq, dan Shadaqah</h1>
+                <p class="text-gray-600 mb-8">Materi pembelajaran untuk bab ini.</p>
+
+                <div class="space-y-5">
+                    <!-- Materi 1: Video -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Video</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Manfaat Zakat, Infaq, dan Shadaqah</h3>
+                        </div>
+                        <!-- Placeholder Video -->
+                        <div class="aspect-video bg-black rounded-lg flex items-center justify-center">
+                            <span class="text-white">Placeholder Video Pembelajaran (16:9)</span>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">Video ini menjelaskan hikmah dan manfaat berbagi melalui zakat, infaq, dan shadaqah bagi individu dan masyarakat.</p>
+                    </div>
+
+                    <!-- Materi 2: Teks (Ringkasan) -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Teks</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Ketentuan Zakat Fitrah dan Zakat Mal</h3>
+                        </div>
+                        <div class="prose prose-sm max-w-none text-gray-700">
+                            <p>Zakat terbagi menjadi dua, yaitu zakat fitrah dan zakat mal.</p>
+                            <ul>
+                                <li><strong>Zakat Fitrah:</strong> Zakat jiwa yang wajib dikeluarkan setahun sekali saat bulan Ramadhan. Besarannya adalah 2,5 kg atau 3,5 liter makanan pokok.</li>
+                                <li><strong>Zakat Mal:</strong> Zakat harta yang wajib dikeluarkan jika telah mencapai nishab (batas minimal) dan haul (batas waktu kepemilikan). Contohnya adalah zakat emas, perak, perdagangan, dan hasil pertanian.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Materi 3: Kuis -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Kuis</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Uji Pemahaman</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sudah paham perbedaan zakat, infaq, dan shadaqah? Coba kuis ini!</p>
+                        <button class="bg-indigo-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Mulai Kuis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Halaman Detail Bab 3 PAI -->
+            <div id="chapter-3-pai-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Bab 3: Haji dan Umrah</h1>
+                <p class="text-gray-600 mb-8">Materi pembelajaran untuk bab ini.</p>
+
+                <div class="space-y-5">
+                    <!-- Materi 1: Video -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Video</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Praktik Manasik Haji</h3>
+                        </div>
+                        <!-- Placeholder Video -->
+                        <div class="aspect-video bg-black rounded-lg flex items-center justify-center">
+                            <span class="text-white">Placeholder Video Pembelajaran (16:9)</span>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">Video simulasi ini menunjukkan urutan pelaksanaan ibadah haji, mulai dari ihram hingga tahallul.</p>
+                    </div>
+
+                    <!-- Materi 2: Teks (Ringkasan) -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Teks</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Rukun, Wajib, dan Sunnah Haji</h3>
+                        </div>
+                        <div class="prose prose-sm max-w-none text-gray-700">
+                            <p>Pelaksanaan haji memiliki rukun, wajib, dan sunnah yang harus dipahami:</p>
+                            <ul>
+                                <li><strong>Rukun Haji:</strong> Amalan yang menentukan sah atau tidaknya haji (Ihram, Wukuf di Arafah, Tawaf Ifadah, Sa'i, Tahallul, Tertib).</li>
+                                <li><strong>Wajib Haji:</strong> Amalan yang jika ditinggalkan, hajinya tetap sah namun harus membayar dam (denda). Contoh: Ihram dari miqat, mabit di Muzdalifah, melontar jumrah.</li>
+                                <li><strong>Sunnah Haji:</strong> Amalan yang dianjurkan untuk menyempurnakan ibadah haji.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Materi 3: Kuis -->
+                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Kuis</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Uji Pemahaman</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Tes pemahamanmu tentang perbedaan rukun dan wajib haji di sini!</p>
+                        <button class="bg-indigo-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Mulai Kuis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Halaman 4: Tentang -->
+            <div id="about-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Tentang RuangBelajar IX</h1>
+                <div class="bg-white p-6 rounded-lg shadow-sm prose max-w-none">
+                    <p><strong>RuangBelajar IX</strong> adalah platform pembelajaran digital yang dirancang khusus untuk siswa-siswi SMP Kelas IX di Indonesia.</p>
+                    <p>Visi kami adalah menyediakan materi pembelajaran yang mudah diakses, menarik, dan sesuai dengan kurikulum nasional. Kami percaya bahwa teknologi dapat menjadi jembatan untuk pendidikan yang lebih berkualitas dan merata.</p>
+                    <p>Platform ini menyediakan berbagai format materi, termasuk:</p>
+                    <ul>
+                        <li>Video penjelasan yang ringkas dan padat.</li>
+                        <li>Ringkasan materi (teks) untuk dibaca ulang.</li>
+                        <li>Kuis interaktif untuk menguji pemahaman.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Halaman 5: Pengaturan Admin -->
+            <div id="admin-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Pengaturan Admin</h1>
+                <div class="bg-white p-8 rounded-lg shadow-sm max-w-md mx-auto">
+                    <h2 class="text-xl font-semibold text-center mb-6">Login Admin</h2>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                            <input type="text" id="username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Masuk
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Halaman 6: Bantuan -->
+            <div id="help-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Pusat Bantuan</h1>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-xl font-semibold mb-4">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Bagaimana cara melihat materi pelajaran?</h3>
+                            <p class="text-gray-600">Klik "Beranda" untuk melihat semua mata pelajaran. Pilih salah satu, kemudian pilih bab yang ingin dipelajari.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Apakah platform ini gratis?</h3>
+                            <p class="text-gray-600">Ya, untuk saat ini seluruh materi di platform RuangBelajar IX dapat diakses secara gratis.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Siapa yang harus dihubungi jika ada masalah?</h3>
+                            <p class="text-gray-600">Jika Anda mengalami kendala teknis, silakan hubungi tim support kami melalui email di <a href="#" class="text-indigo-600">dukungan@ruangbelajar.id</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Halaman Placeholder untuk Mapel Lain -->
+            <div id="subject-math-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-8">Matematika</h1>
+                <p class="text-gray-600">Materi untuk Matematika akan segera hadir!</p>
+            </div>
+            <div id="subject-indo-content" class="page-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-8">Bahasa Indonesia</h1>
+                <p class="text-gray-600">Materi untuk Bahasa Indonesia akan segera hadir!</p>
+            </div>
+
+        </main>
+    </div>
 
     <script>
-        // --- Logika Navigasi Halaman (SPA Sederhana) ---
-        // Semua tombol navigasi (Home, Bab 1, etc.) memanggil fungsi ini.
-        
-        // Menampilkan halaman berdasarkan ID
-        function showPage(pageId) {
-            // Sembunyikan semua konten halaman
-            document.querySelectorAll('.page-content').forEach(function(page) {
-                page.style.display = 'none';
-            });
-            // Tampilkan halaman yang diminta
-            const activePage = document.getElementById(pageId);
-            if (activePage) {
-                activePage.style.display = 'block';
-            }
-            
-            // Tutup menu mobile jika sedang terbuka
-            document.getElementById('mobile-menu').style.display = 'none';
-        }
-
-        // --- Logika Navigasi Tab (di dalam halaman Bab) ---
-        // Tombol (Materi Teks, Video, Audio, Kuis) memanggil fungsi ini.
-        function showTab(tabId) {
-            const pageId = tabId.split('_')[0]; // Mendapatkan prefix (misal: 'bab1')
-            
-            // Sembunyikan semua konten tab di dalam container yang sama
-            document.querySelectorAll('#' + pageId + ' .tab-content').forEach(function(tab) {
-                tab.style.display = 'none';
-            });
-            
-            // Tampilkan tab yang diminta
-            const activeTab = document.getElementById(tabId);
-            if (activeTab) {
-                activeTab.style.display = 'block';
-            }
-            
-            // Atur style tombol tab
-            document.querySelectorAll('#' + pageId + ' .tab-button').forEach(function(button) {
-                button.classList.remove('active');
-            });
-            
-            // Tambahkan kelas 'active' ke tombol yang diklik (cari berdasarkan onclick)
-            const activeButton = document.querySelector('button[onclick="showTab(\'' + tabId + '\')]');
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-        }
-
-        // --- Logika Menu Mobile ---
-        // Tombol menu "hamburger" di HP memanggil fungsi ini.
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.style.display === 'none') {
-                menu.style.display = 'block';
-            } else {
-                menu.style.display = 'none';
-            }
-        });
-        
-        // Atur halaman default saat pertama kali memuat
         document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const subjectCards = document.querySelectorAll('.subject-card');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            const pageContents = document.querySelectorAll('.page-content');
+
+            // Fungsi untuk menampilkan halaman berdasarkan ID
+            function showPage(pageId) {
+                // Sembunyikan semua konten
+                pageContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Tampilkan konten yang dipilih
+                const activePage = document.getElementById(pageId + '-content');
+                if (activePage) {
+                    activePage.classList.add('active');
+                } else {
+                    // Fallback ke home jika halaman tidak ditemukan
+                    document.getElementById('home-content').classList.add('active');
+                }
+            }
+
+            // Tambahkan event listener untuk link navigasi
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            // Tambahkan event listener untuk kartu mata pelajaran
+            subjectCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            // Tambahkan event listener untuk kartu bab
+            chapterCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            // Tampilkan halaman 'home' saat pertama kali dimuat
             showPage('home');
-            showTab('bab1_teks'); // Atur tab default untuk bab1
         });
     </script>
+
 </body>
 </html>
 
